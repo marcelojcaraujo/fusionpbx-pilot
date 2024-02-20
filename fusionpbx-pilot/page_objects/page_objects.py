@@ -55,7 +55,7 @@ class Page(SeleniumObject, ABC):
         self.login_user = login_user
         self.login_password = login_password
 
-    def container_rows(self, items: dict[str:tuple] = None) -> list[dict]:
+    def container_rows(self, items: dict[str, tuple] = None) -> list[dict]:
         """Return a dict with the item:uuid rows
         Default items are name: uuid
 
@@ -205,7 +205,7 @@ class Page(SeleniumObject, ABC):
             dropdown.select_by_value("false")
             return value
 
-    def search_name(self, value: str) -> list[dict]:
+    def search_name(self, value: str) -> typing.List[Dict]:
         """
         Searches for a name in the page.
 
@@ -219,7 +219,7 @@ class Page(SeleniumObject, ABC):
         self.click_button((By.ID, "btn_search"))
         return self.container_rows()
 
-    def search_exact_name(self, value: str) -> [dict]:
+    def search_exact_name(self, value: str) -> list[dict]:
         """
         Searches for an exact name match in the search results.
 

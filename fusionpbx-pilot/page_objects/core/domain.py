@@ -50,7 +50,7 @@ class Domain(ABC):
         self.page.open(f"{app_path}?domain_uuid={self.uuid}&domain_change=true")
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Return the current domain"""
         try:
             self.page.open(app_path)
@@ -67,7 +67,7 @@ class Domain(ABC):
             return self.page.login_user.split("@")[1]
 
     @name.setter
-    def name(self, name: str):
+    def name(self, name: str) -> str:
         """Set/Rename the current domain name"""
         self.page.open(app_path)
         search = self.page.search_exact_name(name)
@@ -85,14 +85,16 @@ class Domain(ABC):
                 self.page.click_button((By.ID, "btn_save"))
                 self.page.open(app_path)
                 self.uuid = self.page.search_exact_name(name)['uuid']
-                return self._switch_to(name)
+                self._switch_to(name)
+                return self.name
         elif self.uuid is not None:
             # Rename
             if name in search:
                 raise Exception(f"Domain {name} already exists")
             self.page.open(f"{app_edit_path}?id={self.uuid}")
             self.page.fill_form((By.NAME, "domain_name"), name)
-            return self._switch_to(name)
+            self._switch_to(name)
+            return self.name
 
     @name.deleter
     def name(self):

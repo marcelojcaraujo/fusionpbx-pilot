@@ -22,7 +22,7 @@ class Domains(ABC):
         }
         return self.page.container_rows(items)
 
-    def toggle(self, domains: list):
+    def toggle(self, domains: list) -> list:
         """Toggle domains Enabled/Disabled
 
         Args:
@@ -32,6 +32,7 @@ class Domains(ABC):
         self.page.open(app_path)
         self.page.select_rows(domains)
         # WIP: Need to click on toogle button to complete the action
+        # WIP: Need to return the status of the domains after the action
 
     def __repr__(self):
         return f"<Domains: {self.list()}>"
