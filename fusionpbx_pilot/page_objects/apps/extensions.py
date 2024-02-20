@@ -1,4 +1,5 @@
 from abc import ABC
+
 from selenium.webdriver.common.by import By
 
 app_path = "/app/extensions/extensions.php"

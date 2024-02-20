@@ -1,14 +1,14 @@
-# type: ignore[attr-defined]
+# mypy: disable-error-code="attr-defined"
 from typing import Optional
 
 from enum import Enum
 from random import choice
 
 import typer
+from fusionpbx_pilot.example import hello
 from rich.console import Console
 
 from fusionpbx_pilot import version
-from fusionpbx_pilot.example import hello
 
 
 class Color(str, Enum):

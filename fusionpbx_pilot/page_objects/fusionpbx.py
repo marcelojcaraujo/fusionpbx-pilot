@@ -1,8 +1,8 @@
-from pilot.page_objects import Page
-from pilot.page_objects.core import Domain, Domains
+from fusionpbx_pilot.page_objects import Page
+from fusionpbx_pilot.page_objects.core import Domain, Domains
 
 
-class FusionPBX():
+class FusionPBX:
     def __init__(self, browser, url, login_user, login_password):
         self.page = Page(browser, url, login_user, login_password)
 
@@ -21,4 +21,4 @@ class FusionPBX():
     @domain.deleter
     def domain(self, name):
         self.domain.name = name
-        del (self.domain.name)
+        del self.domain.name

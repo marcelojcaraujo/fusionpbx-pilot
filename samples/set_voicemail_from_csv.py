@@ -1,15 +1,17 @@
 """
 This script will change the voicemail settings for a list of extensions loaded from a exported csv file, printing Time taken for each extension.
 """
-import timeit
-from selenium.webdriver import Firefox
-from pilot.page_objects import FusionPBX
+
 import csv
+import timeit
+
+from fusionpbx_pilot.page_objects import FusionPBX
+from selenium.webdriver import Firefox
 
 browser = Firefox()
 
-url = "pbx.domain.com"        # URL of your FusionPBX
-user = "pilot"                # User with superadmin privileges
+url = "pbx.domain.com"  # URL of your FusionPBX
+user = "pilot"  # User with superadmin privileges
 password = "C0mpl3xP4ssw0rd"  # Password for the user
 
 
@@ -31,11 +33,12 @@ def read_from_csv(csv_file):
                 print("----------------------------------------------")
                 print(f"Trying   {row['extension']}: {row['mailbox']}")
                 print(
-                    "Time taken   :", timeit.timeit(lambda: set_voicemail(row), number=1)
+                    "Time taken   :",
+                    timeit.timeit(lambda: set_voicemail(row), number=1),
                 )
 
 
 f = FusionPBX(browser, url, user, password)
 d = f.domain("domain.com")
 
-read_from_csv('samples/csv/extensions.csv')
+read_from_csv("samples/csv/extensions.csv")

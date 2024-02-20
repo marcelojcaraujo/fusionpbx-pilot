@@ -1,10 +1,9 @@
 from abc import ABC
-from pilot.page_objects.apps import Extension
-from pilot.page_objects.apps import Extensions
-from selenium.webdriver.common.by import By
-from pilot.page_objects.page_objects import AccessError
-from selenium.common.exceptions import NoSuchElementException
 
+from fusionpbx_pilot.page_objects.apps import Extension, Extensions
+from fusionpbx_pilot.page_objects.page_objects import AccessError
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
 
 app_path = "/core/domains/domains.php"
 app_edit_path = "/core/domains/domain_edit.php"
@@ -61,7 +60,9 @@ class Domain(ABC):
             except NoSuchElementException:
                 # Fusionpbx Version  4.5.28
                 # TODO: Create an exception class to threat FusionPBX changes versions.
-                return self.page.find_element((By.CSS_SELECTOR, ".domain_selector_domain")).text
+                return self.page.find_element(
+                    (By.CSS_SELECTOR, ".domain_selector_domain")
+                ).text
 
         except AccessError:
             return self.page.login_user.split("@")[1]
@@ -72,9 +73,9 @@ class Domain(ABC):
         self.page.open(app_path)
         search = self.page.search_exact_name(name)
         if self.uuid is None:
-            if search and search['name'] == name:
+            if search and search["name"] == name:
                 # Already exists
-                self.uuid = search['uuid']
+                self.uuid = search["uuid"]
                 self._switch_to(name)
                 return self.name
             else:
@@ -84,7 +85,7 @@ class Domain(ABC):
                 self.page.fill_form((By.NAME, "domain_name"), name)
                 self.page.click_button((By.ID, "btn_save"))
                 self.page.open(app_path)
-                self.uuid = self.page.search_exact_name(name)['uuid']
+                self.uuid = self.page.search_exact_name(name)["uuid"]
                 self._switch_to(name)
                 return self.name
         elif self.uuid is not None:

@@ -1,4 +1,5 @@
 from abc import ABC
+
 from selenium.webdriver.common.by import By
 
 app_path = "/app/extensions/extensions.php"
@@ -41,9 +42,9 @@ class Extension(ABC):
         self.page.open(app_path)
         search = self.page.search_exact_name(name)
         if self.uuid is None:
-            if search and search['name']:
+            if search and search["name"]:
                 # Already exists
-                self.uuid = search['uuid']
+                self.uuid = search["uuid"]
                 self._name = str(name)
                 return self.name
             else:
@@ -54,7 +55,7 @@ class Extension(ABC):
                 self.page.click_button((By.ID, "btn_save"))
                 self._name = str(name)
                 self.page.open(app_path)
-                self.uuid = self.page.search_exact_name(name)['uuid']
+                self.uuid = self.page.search_exact_name(name)["uuid"]
                 return self.name
 
         elif self.uuid is not None:
@@ -99,7 +100,9 @@ class Extension(ABC):
     def voicemail_mail_to(self):
         self._satity_check()
         self.page.open(f"{app_edit_path}?id={self.uuid}")
-        return self.page.find_element((By.NAME, "voicemail_mail_to")).get_attribute("value")
+        return self.page.find_element((By.NAME, "voicemail_mail_to")).get_attribute(
+            "value"
+        )
 
     @voicemail_mail_to.setter
     def voicemail_mail_to(self, email):

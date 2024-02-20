@@ -51,7 +51,7 @@ check-codestyle:
 
 .PHONY: mypy
 mypy:
-	poetry run mypy --config-file pyproject.toml ./
+	poetry run mypy --config-file pyproject.toml ./ --no-namespace-packages
 
 .PHONY: check-safety
 check-safety:

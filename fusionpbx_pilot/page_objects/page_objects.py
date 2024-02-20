@@ -1,4 +1,5 @@
 from abc import ABC
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
@@ -205,7 +206,7 @@ class Page(SeleniumObject, ABC):
             dropdown.select_by_value("false")
             return value
 
-    def search_name(self, value: str) -> typing.List[Dict]:
+    def search_name(self, value: str) -> list[Dict]:
         """
         Searches for a name in the page.
 

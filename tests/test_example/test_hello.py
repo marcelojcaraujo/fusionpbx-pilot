@@ -1,6 +1,6 @@
 """Tests for hello function."""
-import pytest
 
+import pytest
 from fusionpbx_pilot.example import hello
 
 
