@@ -12,10 +12,12 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "cwd": "${workspaceFolder}",
+            "args": [
+                "shatter"
+            ],
             "env": {
                 "PYTHONPATH": "${workspaceFolder}"
             }
-
         },
     ]
 }
