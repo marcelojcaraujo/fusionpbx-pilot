@@ -5,13 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "softplan script",
-            "type": "python",
+            "name": "Customer Report script",
+            "type": "debugpy",
             "request": "launch",
-            "program": "stuff/softplan_email_script.py",
+            "program": "samples/customer_report.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
 
         },
     ]
